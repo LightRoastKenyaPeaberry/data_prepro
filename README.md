@@ -1,10 +1,10 @@
 # data_prepro
 一些数据预处理的文件。
 ## 所需环境
-pencv-contrib-python==3.4.2.17           
-opencv-python==3.4.2.17 
-numpy==1.19.5 
-python==3.6.13 
+opencv-contrib-python==3.4.2.17
+opencv-python==3.4.2.17
+numpy==1.19.5
+python==3.6.13
 matplotlib==3.3.4
 
 ## 功能
