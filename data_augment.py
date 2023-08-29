@@ -175,6 +175,13 @@ def has_blank_pic(source):
                 print(f'\033[1;31m空白图片:{img_path}\033[0m')
 
 
+def file_subdir_name(root_path):
+    subdir = [i for i in os.listdir(root_path) if os.path.isdir(os.path.join(root_path,i))]
+
+    with open('./dir_names.txt', 'w') as f:
+        f.write('\n'.join(subdir))                
+
+
 if __name__ == '__main__':
     # has_blank_pic('/home/zxy/imgs/CharSample')
     # rename_dir('/home/zxy/imgs/CharSample')
