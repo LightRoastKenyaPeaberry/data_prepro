@@ -179,3 +179,5 @@ if __name__ == '__main__':
     # has_blank_pic('/home/zxy/imgs/CharSample')
     # rename_dir('/home/zxy/imgs/CharSample')
     # five_augment('/home/zxy/imgs/CharSample', 50)
+    
+    print('\033[1;32m程序完成\n¯\_(ツ)_/¯\033[0m')
