@@ -144,12 +144,38 @@ def five_augment(start_path: str, threshhold: int):
 
 
 def rename_dir(start_path):
-    '''这里重命名是按照现有的文件夹改的，至于其他特点的文件夹依情况再修改。'''
+    '''这里重命名是按照现有的三层文件夹改的，至于其他形状的文件夹依情况再修改。'''
     subdirs = os.listdir(start_path)
     for dir_name in subdirs:
         os.rename(os.path.join(start_path, dir_name), os.path.join(start_path, dir_name[:4]))
 
 
+def is_blank_pic(img_path):
+    '''这里我将std设为<1，而不是完全等于0.
+       也就是针对那些肉眼可见的空白图片，
+       不能过滤掉只有特定噪声，没有内容的图片。
+    '''
+    img= cv.imread(img_path, cv.IMREAD_UNCHANGED)
+    img = np.asarray(img,dytype=np.int32)
+    if np.std(img) < 1:
+        return True
+    
+
+def has_blank_pic(source):
+    for root, _, files in os.walk(source):
+#     print('****')
+#     print(root)
+        if len(files) == 0:
+            continue
+        for i in range(len(files)):
+            img_path = os.path.join(root, files[i])
+            img = cv.imread(img_path)
+            img = np.asarray(img, dtype=np.int32)
+            if np.std(img) < 1:
+                print(f'\033[1;31m空白图片:{img_path}\033[0m')
+
+
 if __name__ == '__main__':
-    rename_dir('/home/zxy/imgs/CharSample')
-    five_augment('/home/zxy/imgs/CharSample', 50)
+    # has_blank_pic('/home/zxy/imgs/CharSample')
+    # rename_dir('/home/zxy/imgs/CharSample')
+    # five_augment('/home/zxy/imgs/CharSample', 50)
