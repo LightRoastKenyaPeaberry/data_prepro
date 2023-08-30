@@ -182,9 +182,29 @@ def file_subdir_name(root_path):
         f.write('\n'.join(subdir))                
 
 
+def find_spec_files(root: str, file_type: [str]) -> list:
+    '''
+    Args:
+        root: the container of the files that you want to find
+        file_type: the file types in List: ['txt', 'jpg']
+    '''
+    results =[]
+    for root, _, files in os.walk(root):
+        if len(files) == 0:
+            continue
+        for i in range(len(files)):
+            if os.path.splitext(files[i])[-1][1:] in file_type:
+                # print(os.path.join(root, files[i]))
+                results.append(os.path.join(root, files[i]))
+
+    return results
+
+
 if __name__ == '__main__':
     # has_blank_pic('/home/zxy/imgs/CharSample')
     # rename_dir('/home/zxy/imgs/CharSample')
     # five_augment('/home/zxy/imgs/CharSample', 50)
+    # results = find_spec_files('/Users/joriri/test_dir', ['jpg', 'png', 'py'])
+    # print(results)
     
     print('\033[1;32m程序完成\n¯\_(ツ)_/¯\033[0m')
