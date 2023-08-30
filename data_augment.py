@@ -51,7 +51,7 @@ def erode(source, dest):
 
 
 
-def open(source, dest):
+def open_pic(source, dest):
     # 开：先腐蚀，再膨胀
     img = cv.imread(source, cv.IMREAD_UNCHANGED)
 
@@ -67,7 +67,7 @@ def open(source, dest):
     print('成功')   
 
 
-def close(source, dest):
+def close_pic(source, dest):
     # 开：先腐蚀，再膨胀
     img = cv.imread(source, cv.IMREAD_UNCHANGED)
 
@@ -138,8 +138,8 @@ def five_augment(start_path: str, threshhold: int):
             # 注意img_path 里不能包括中文，不然会报错
             dilate(img_path, dir_path)
             erode(img_path, dir_path)
-            open(img_path, dir_path)
-            close(img_path, dir_path)
+            open_pic(img_path, dir_path)
+            close_pic(img_path, dir_path)
             blur(img_path, dir_path)
 
 
