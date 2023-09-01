@@ -5,6 +5,7 @@
 import numpy as np
 import cv2 as cv
 import os
+import shutil
 
 # import count_files
 
@@ -125,6 +126,17 @@ def find_small_dir(start_path: str, threshhold: int):
 
     return small_dir
 
+def del_small_dir(start_path: str, threshhold: int):
+    '''
+    三级结构
+    '''
+    subdirs = sorted([item for item in os.listdir(start_path) 
+                        if os.path.isdir(os.path.join(start_path, item))])
+    for i in range(len(subdirs)):
+        dir_path = os.path.join(start_path, subdirs[i])
+        if len(os.listdir(dir_path)) < threshhold:
+            print(f'\033[1;31m删除目录:{dir_path}\033[0m')
+            shutil.rmtree(dir_path)
 
 def five_augment(start_path: str, threshhold: int):
     '''建议将数据集存为两份， 一份不做改动， 另一份用来做数据增强'''
@@ -206,5 +218,6 @@ if __name__ == '__main__':
     # five_augment('/home/zxy/imgs/CharSample', 50)
     # results = find_spec_files('/Users/joriri/test_dir', ['jpg', 'png', 'py'])
     # print(results)
+    # del_small_dir(start_path='/Users/joriri/test_dir', threshhold=5)
     
     print('\033[1;32m程序完成\n¯\_(ツ)_/¯\033[0m')

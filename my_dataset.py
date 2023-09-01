@@ -15,6 +15,7 @@ class MyDataSet(Dataset):
         return len(self.images_path)
 
     def __getitem__(self, item):
+        '''请注意这个RGB和L的问题，此处只是简单判断，假如用了灰度图，用torchvision.dataset.'''
         img = Image.open(self.images_path[item])
         # RGB为彩色图片，L为灰度图片
         if img.mode != 'RGB':
